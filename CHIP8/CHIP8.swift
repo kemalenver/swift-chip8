@@ -52,7 +52,7 @@ class CHIP8 {
     var stack: [Word] = Array(repeating: 0, count: 16)
     var sp: Word = 0
 
-    init(program: [Byte] = []) {
+    init(program: [Byte]) {
         self.loadInterpreter()
         self.loadFont()
         self.load(program: program)
@@ -61,20 +61,24 @@ class CHIP8 {
     }
 
     private func loadInterpreter() {
-        // Interpreter is stored from 0 to 50
-        let interpreter: [Byte] = Array(repeating: 0, count: 0x1FF)
+        // Interpreter is stored from x0 to x50
+        let interpreter: [Byte] = Array(repeating: 0xAA, count: 0x1FF)
         self.memory.replaceSubrange(0x00..<0x1FF, with: interpreter)
     }
 
     private func loadFont() {
-        // Fonts are stored at offset 50
+        // Fonts are stored at offset x50
         self.memory.replaceSubrange(0x50..<0x50+Fonts.Standard.count, with: Fonts.Standard)
     }
 
     private func load(program: [Byte]) {
-        // Programs are stored from offset 200
+        // Programs are stored from offset x200
         self.memory.replaceSubrange(0x200..<0x200 + program.count, with: program)
         pc = 0x200
+    }
+
+    func step() {
+        print("stepping")
     }
 
     func printMemory() {
