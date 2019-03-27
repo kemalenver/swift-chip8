@@ -33,10 +33,10 @@ class CHIP8 {
     // 0x000-0x1FF - Chip 8 interpreter (contains font set in emu)
     // 0x050-0x0A0 - Used for the built in 4x5 pixel font set (0-F)
     // 0x200-0xFFF - Program ROM and work RAM
-    var memory: [Byte] = Array(repeating: 0, count: 4096)
+    var memory: [Byte] = [Byte](repeating: 0, count: 4096)
 
     // 16 registers v0...vE.  last register is a carry flag
-    var v: [Byte] = Array(repeating: 0, count: 16)
+    var v: [Byte] = [Byte](repeating: 0, count: 16)
 
     // index register
     var I: Word = 0
@@ -44,26 +44,26 @@ class CHIP8 {
     // Program Counter, programs start at address 200
     var pc: Word = 0x200
 
-    var graphics: [Byte] = Array(repeating: 0, count: 64 * 32)
+    var graphics: [Byte] = [Byte](repeating: 0, count: 64 * 32)
 
     var delayTimer: Byte = 0
     var soundTimer: Byte = 0
 
-    var stack: [Word] = Array(repeating: 0, count: 16)
+    var stack: [Word] = [Word](repeating: 0, count: 16)
     var sp: Word = 0
+
+    var drawFlag: Bool = false
 
     init(program: [Byte]) {
         self.loadInterpreter()
         self.loadFont()
         self.load(program: program)
-
-        self.printMemory()
     }
 
     private func loadInterpreter() {
-        // Interpreter is stored from x0 to x50
-        let interpreter: [Byte] = Array(repeating: 0xAA, count: 0x1FF)
-        self.memory.replaceSubrange(0x00..<0x1FF, with: interpreter)
+        // Interpreter is stored from x0 to x1FF
+        let interpreter: [Byte] = Array(repeating: 0x0, count: 0x1FF)
+        self.memory.replaceSubrange(0x00..<0x00 + interpreter.count, with: interpreter)
     }
 
     private func loadFont() {
@@ -78,30 +78,47 @@ class CHIP8 {
     }
 
     func step() {
-        print("stepping")
+
+        self.fetchOpCode()
+        // decode opcode
+        // execute opcode
+        // Update timers
     }
 
-    func printMemory() {
+    private func fetchOpCode() {
 
-        let rowSize = 16
+        var opCodeLeft = self.memory[Int(self.pc)]
+        var opCodeRight = self.memory[Int(self.pc) + 1]
+        var opCode = opCodeLeft << 8 | opCodeRight
+
+        print("\(String(format:"%02X",opCode))")
+    }
+
+    func memoryDescription() -> String {
+
+        var memoryDescription = ""
+
+        let rowSize = 32
         let numberOfRows = self.memory.count / rowSize
 
         for i in 0..<rowSize {
-            print("0x\(String(format:"%02X", i))", terminator: " | ")
+            memoryDescription += "\(String(format:"%02X", i)) | "
         }
-        print()
+        memoryDescription += "\n"
         for _ in 0..<rowSize {
-            print("----", terminator: " | ")
+            memoryDescription += "-- | "
         }
-        print()
+        memoryDescription += "\n"
 
         for i in 0..<numberOfRows {
 
-            for j in i*rowSize..<(i*rowSize + 16) {
-                print("0x\(String(format:"%02X", self.memory[j]))", terminator: " | ")
+            for j in i*rowSize..<(i*rowSize + rowSize) {
+                memoryDescription += "\(String(format:"%02X", self.memory[j])) | "
             }
-            print()
+            memoryDescription += "\n"
         }
+
+        return memoryDescription
     }
 }
 

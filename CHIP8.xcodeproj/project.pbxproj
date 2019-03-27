@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A016DF7224C31C1008B40FA /* MemoryCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A016DF5224C31C1008B40FA /* MemoryCellCollectionViewCell.swift */; };
+		0A016DF8224C31C1008B40FA /* MemoryCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A016DF6224C31C1008B40FA /* MemoryCellCollectionViewCell.xib */; };
 		0A8BBB0822487AE300D436CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BBB0722487AE300D436CE /* AppDelegate.swift */; };
 		0A8BBB0A22487AE300D436CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BBB0922487AE300D436CE /* ViewController.swift */; };
 		0A8BBB0D22487AE300D436CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8BBB0B22487AE300D436CE /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A016DF5224C31C1008B40FA /* MemoryCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		0A016DF6224C31C1008B40FA /* MemoryCellCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoryCellCollectionViewCell.xib; sourceTree = "<group>"; };
 		0A8BBB0422487AE300D436CE /* CHIP8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHIP8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8BBB0722487AE300D436CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A8BBB0922487AE300D436CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				0A8BBB0E22487AE400D436CE /* Assets.xcassets */,
 				0A8BBB1022487AE400D436CE /* LaunchScreen.storyboard */,
 				0A8BBB1322487AE400D436CE /* Info.plist */,
+				0A016DF5224C31C1008B40FA /* MemoryCellCollectionViewCell.swift */,
+				0A016DF6224C31C1008B40FA /* MemoryCellCollectionViewCell.xib */,
 			);
 			path = CHIP8;
 			sourceTree = "<group>";
@@ -131,6 +137,7 @@
 				0A8BBB1222487AE400D436CE /* LaunchScreen.storyboard in Resources */,
 				0A8BBB1C2249E8EB00D436CE /* pong.ch8 in Resources */,
 				0A8BBB0F22487AE400D436CE /* Assets.xcassets in Resources */,
+				0A016DF8224C31C1008B40FA /* MemoryCellCollectionViewCell.xib in Resources */,
 				0A8BBB0D22487AE300D436CE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A8BBB1A22487AF400D436CE /* CHIP8.swift in Sources */,
+				0A016DF7224C31C1008B40FA /* MemoryCellCollectionViewCell.swift in Sources */,
 				0A8BBB0A22487AE300D436CE /* ViewController.swift in Sources */,
 				0A8BBB0822487AE300D436CE /* AppDelegate.swift in Sources */,
 			);
@@ -293,6 +301,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PDT9S226TJ;
 				INFOPLIST_FILE = CHIP8/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +309,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kemalenver.CHIP8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -311,6 +320,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PDT9S226TJ;
 				INFOPLIST_FILE = CHIP8/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -318,7 +328,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kemalenver.CHIP8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
