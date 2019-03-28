@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A016DF7224C31C1008B40FA /* MemoryCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A016DF5224C31C1008B40FA /* MemoryCellCollectionViewCell.swift */; };
 		0A016DF8224C31C1008B40FA /* MemoryCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A016DF6224C31C1008B40FA /* MemoryCellCollectionViewCell.xib */; };
+		0A016DFA224C7C32008B40FA /* ScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A016DF9224C7C32008B40FA /* ScreenView.swift */; };
 		0A8BBB0822487AE300D436CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BBB0722487AE300D436CE /* AppDelegate.swift */; };
 		0A8BBB0A22487AE300D436CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BBB0922487AE300D436CE /* ViewController.swift */; };
 		0A8BBB0D22487AE300D436CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8BBB0B22487AE300D436CE /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		0A016DF5224C31C1008B40FA /* MemoryCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		0A016DF6224C31C1008B40FA /* MemoryCellCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoryCellCollectionViewCell.xib; sourceTree = "<group>"; };
+		0A016DF9224C7C32008B40FA /* ScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenView.swift; sourceTree = "<group>"; };
 		0A8BBB0422487AE300D436CE /* CHIP8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CHIP8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8BBB0722487AE300D436CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A8BBB0922487AE300D436CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,12 +68,13 @@
 				0A8BBB0722487AE300D436CE /* AppDelegate.swift */,
 				0A8BBB0922487AE300D436CE /* ViewController.swift */,
 				0A8BBB1922487AF400D436CE /* CHIP8.swift */,
-				0A8BBB0B22487AE300D436CE /* Main.storyboard */,
-				0A8BBB0E22487AE400D436CE /* Assets.xcassets */,
-				0A8BBB1022487AE400D436CE /* LaunchScreen.storyboard */,
-				0A8BBB1322487AE400D436CE /* Info.plist */,
 				0A016DF5224C31C1008B40FA /* MemoryCellCollectionViewCell.swift */,
 				0A016DF6224C31C1008B40FA /* MemoryCellCollectionViewCell.xib */,
+				0A016DF9224C7C32008B40FA /* ScreenView.swift */,
+				0A8BBB0E22487AE400D436CE /* Assets.xcassets */,
+				0A8BBB1022487AE400D436CE /* LaunchScreen.storyboard */,
+				0A8BBB0B22487AE300D436CE /* Main.storyboard */,
+				0A8BBB1322487AE400D436CE /* Info.plist */,
 			);
 			path = CHIP8;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				0A016DF7224C31C1008B40FA /* MemoryCellCollectionViewCell.swift in Sources */,
 				0A8BBB0A22487AE300D436CE /* ViewController.swift in Sources */,
 				0A8BBB0822487AE300D436CE /* AppDelegate.swift in Sources */,
+				0A016DFA224C7C32008B40FA /* ScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

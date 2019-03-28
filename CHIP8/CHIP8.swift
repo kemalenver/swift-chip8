@@ -87,11 +87,16 @@ class CHIP8 {
 
     private func fetchOpCode() {
 
-        var opCodeLeft = self.memory[Int(self.pc)]
-        var opCodeRight = self.memory[Int(self.pc) + 1]
-        var opCode = opCodeLeft << 8 | opCodeRight
+        let opCodeLeft = self.memory[Int(self.pc)]
+        let opCodeRight = self.memory[Int(self.pc) + 1]
+        let opCode = Word(opCodeLeft) << 8 | Word(opCodeRight)
 
-        print("\(String(format:"%02X",opCode))")
+        let nibble1 = (opCodeLeft & 0xF0) >> 4
+        let nibble2 = opCodeLeft & 0x0F
+        let nibble3 = (opCodeRight & 0xF0) >> 4
+        let nibble4 = opCodeRight & 0x0F
+
+        print("\(String(format:"%02X %02X %04X | %01X %01X %01X %01X", opCodeLeft, opCodeRight, opCode, nibble1, nibble2, nibble3, nibble4))")
     }
 
     func memoryDescription() -> String {

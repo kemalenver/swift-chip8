@@ -17,22 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Register v0 - vf" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tR4-ji-wEg">
-                                <rect key="frame" x="0.0" y="665" width="1024" height="103"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="Up1-Lx-AII"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cZP-MV-Rsx">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="509"/>
+                                <rect key="frame" x="0.0" y="58" width="1024" height="710"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="TGj-g2-5ez"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="VF2-fc-UbF">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="VF2-fc-UbF">
                                     <size key="itemSize" width="263" height="191"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -40,14 +28,25 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Memory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQD-WJ-AuK">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="FKz-vE-5xf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="cZP-MV-Rsx" secondAttribute="trailing" id="Apf-7X-a7B"/>
-                            <constraint firstItem="tR4-ji-wEg" firstAttribute="leading" secondItem="yVc-wa-twO" secondAttribute="leadingMargin" id="B2X-3C-wWa"/>
-                            <constraint firstItem="cZP-MV-Rsx" firstAttribute="leading" secondItem="yVc-wa-twO" secondAttribute="leadingMargin" id="CEn-sa-miY"/>
-                            <constraint firstItem="tR4-ji-wEg" firstAttribute="bottom" secondItem="yVc-wa-twO" secondAttribute="bottomMargin" id="eU4-yG-JG0"/>
-                            <constraint firstItem="cZP-MV-Rsx" firstAttribute="top" secondItem="yVc-wa-twO" secondAttribute="topMargin" id="qhe-TP-qkl"/>
+                            <constraint firstItem="cZP-MV-Rsx" firstAttribute="top" secondItem="QQD-WJ-AuK" secondAttribute="bottom" id="4o4-lJ-WWc"/>
+                            <constraint firstAttribute="trailing" secondItem="cZP-MV-Rsx" secondAttribute="trailing" id="Apf-7X-a7B"/>
+                            <constraint firstItem="cZP-MV-Rsx" firstAttribute="leading" secondItem="yVc-wa-twO" secondAttribute="leading" id="CEn-sa-miY"/>
+                            <constraint firstItem="QQD-WJ-AuK" firstAttribute="leading" secondItem="yVc-wa-twO" secondAttribute="leading" constant="20" id="Czk-iF-WgF"/>
+                            <constraint firstAttribute="trailing" secondItem="QQD-WJ-AuK" secondAttribute="trailing" id="MpR-BD-Ekz"/>
+                            <constraint firstItem="QQD-WJ-AuK" firstAttribute="top" secondItem="yVc-wa-twO" secondAttribute="top" id="hxz-Uz-hCI"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="cZP-MV-Rsx" secondAttribute="bottom" id="nc9-nJ-KfF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LI8-Fw-9rE"/>
                     </view>
@@ -78,6 +77,12 @@
         <scene sceneID="js9-hc-XNL">
             <objects>
                 <viewController id="tcv-to-Xla" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X4c-fy-xiU" customClass="ScreenView" customModule="CHIP8" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Vm9-DO-3FH"/>
+                    </view>
                     <navigationItem key="navigationItem" id="hD5-bI-b9N"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmO-da-nDs" userLabel="First Responder" sceneMemberID="firstResponder"/>
