@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AC007882252EAB700FA0360 /* ScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC007872252EAB700FA0360 /* ScreenView.swift */; };
+		0AC0078A2252EE4100FA0360 /* OpCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC007892252EE4100FA0360 /* OpCode.swift */; };
 		0ACD1D06224D973A004A4E68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD1D05224D973A004A4E68 /* AppDelegate.swift */; };
 		0ACD1D08224D973A004A4E68 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACD1D07224D973A004A4E68 /* ViewController.swift */; };
 		0ACD1D0A224D973B004A4E68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ACD1D09224D973B004A4E68 /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AC007872252EAB700FA0360 /* ScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenView.swift; sourceTree = "<group>"; };
+		0AC007892252EE4100FA0360 /* OpCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpCode.swift; sourceTree = "<group>"; };
 		0ACD1D02224D973A004A4E68 /* CHIP8-MAC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CHIP8-MAC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ACD1D05224D973A004A4E68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ACD1D07224D973A004A4E68 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,7 +67,9 @@
 			children = (
 				0ACD1D05224D973A004A4E68 /* AppDelegate.swift */,
 				0ACD1D07224D973A004A4E68 /* ViewController.swift */,
+				0AC007872252EAB700FA0360 /* ScreenView.swift */,
 				0ACD1D16224D97A0004A4E68 /* CHIP8.swift */,
+				0AC007892252EE4100FA0360 /* OpCode.swift */,
 				0ACD1D15224D97A0004A4E68 /* pong.ch8 */,
 				0ACD1D09224D973B004A4E68 /* Assets.xcassets */,
 				0ACD1D0B224D973B004A4E68 /* Main.storyboard */,
@@ -148,9 +154,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ACD1D18224D97A1004A4E68 /* CHIP8.swift in Sources */,
+				0AC0078A2252EE4100FA0360 /* OpCode.swift in Sources */,
 				0ACD1D08224D973A004A4E68 /* ViewController.swift in Sources */,
 				0ACD1D1B224D9DF6004A4E68 /* MemoryCVItem.swift in Sources */,
 				0ACD1D06224D973A004A4E68 /* AppDelegate.swift in Sources */,
+				0AC007882252EAB700FA0360 /* ScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

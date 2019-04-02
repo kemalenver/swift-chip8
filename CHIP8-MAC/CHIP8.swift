@@ -29,6 +29,7 @@ struct Fonts {
 }
 
 class CHIP8 {
+
     // 4k of memory, 512 bytes
     // 0x000-0x1FF - Chip 8 interpreter (contains font set in emu)
     // 0x050-0x0A0 - Used for the built in 4x5 pixel font set (0-F)
@@ -36,7 +37,7 @@ class CHIP8 {
     var memory: [Byte] = [Byte](repeating: 0, count: 4096)
 
     // 16 registers v0...vE.  last register is a carry flag
-    var v: [Byte] = [Byte](repeating: 0, count: 16)
+    var V: [Byte] = [Byte](repeating: 0, count: 16)
 
     // index register
     var I: Word = 0
@@ -50,7 +51,7 @@ class CHIP8 {
     var soundTimer: Byte = 0
 
     var stack: [Word] = [Word](repeating: 0, count: 16)
-    var sp: Word = 0
+    var sp: Int = 0
 
     var drawFlag: Bool = false
 
@@ -78,27 +79,204 @@ class CHIP8 {
     }
 
     func step() {
+        
+        self.drawFlag = false
+        
+        let opCode = self.fetchOpCode()
+        
+        switch opCode {
 
-        self.fetchOpCode()
-        // decode opcode
-        // execute opcode
-        // Update timers
+        case .clearScreen:
+            self.clearScreen()
+
+        case .setValue(let vx, let value):
+            self.setValue(vx: vx, value: value)
+            
+        case .setIndex(let address):
+            self.setIndex(address: address)
+            
+        case .draw(let vx, let vy, let rows):
+            self.draw(vx: vx, vy: vy, rows: rows)
+            
+        case .callSub(let address):
+            self.callSub(address: address)
+            
+        case .storeBinaryCodedDecimal(let vx):
+            self.storeBinaryCodedDecimal(vx: vx)
+            
+        case .registerLoad(let vx):
+            self.registerLoad(vx: vx)
+            
+        case .setSpriteAddress(let vx):
+            self.setSpriteAddress(vx: vx)
+            
+        case .addToRegister(let vx, let value):
+            self.addToRegister(vx: vx, value: value)
+            
+        case .returnFromSub:
+            self.returnFromSub()
+            
+        case .setDelayTimer(let vx):
+            self.setDelayTimer(vx: vx)
+            
+        case .storeDelayTimer(let vx):
+            self.storeDelayTimer(vx: vx)
+
+        case .skipIfEqual(let vx, let value):
+            self.skipIfEqual(vx: vx, value: value)
+
+        case .jump(let address):
+            self.jump(address: address)
+        }
     }
-
-    private func fetchOpCode() {
-
+    
+    private func fetchOpCode() -> OpCode {
+        
         let opCodeLeft = self.memory[Int(self.pc)]
         let opCodeRight = self.memory[Int(self.pc) + 1]
-        let opCode = Word(opCodeLeft) << 8 | Word(opCodeRight)
+        let rawOpCode = Word(opCodeLeft) << 8 | Word(opCodeRight)
+        
+        let opCode = OpCode(rawOpcode: rawOpCode)
+        
+        return opCode
+    }
+    
+    private func clearScreen() {
+        for i in 0..<self.graphics.count {
+            self.graphics[i] = Byte(0)
+        }
 
-        let nibble1 = (opCodeLeft & 0xF0) >> 4
-        let nibble2 = opCodeLeft & 0x0F
-        let nibble3 = (opCodeRight & 0xF0) >> 4
-        let nibble4 = opCodeRight & 0x0F
-
-        print("\(String(format:"%02X %02X %04X | %01X %01X %01X %01X", opCodeLeft, opCodeRight, opCode, nibble1, nibble2, nibble3, nibble4))")
+        self.drawFlag = true
+        self.pc += 2
+   }
+    
+    private func setValue(vx: Int, value: Byte) {
+        print("set value \(vx) | \(value)")
+        self.V[vx] = value
+        pc += 2
+    }
+    
+    private func setIndex(address: Word) {
+        print("set index \(address)")
+        self.I = address
+        pc += 2
+    }
+    
+    // TODO
+    private func draw(vx: Int, vy: Int, rows: Byte) {
+        print("draw")
+        
+        let startX = Int(self.V[vx])
+        let startY = Int(self.V[vy])
+        
+        self.V[0xF] = 0
+        
+        for y in 0..<Int(rows) {
+            var pixelRow = self.memory[Int(I) + y]
+            for x in 0..<8 {
+                if (pixelRow & 0x80) != 0 {
+                    let screenY = (startY + y) % 32
+                    let screenX = (startX + x) % 64
+                    let screenIndex = (screenY * 32) + screenX
+                    if self.graphics[screenIndex] == 1 {
+                        V[0xF] = 1
+                    }
+                    self.graphics[screenIndex] ^= 1
+                }
+                pixelRow <<= 1
+            }
+        }
+        
+        self.drawFlag = true
+        pc += 2
+    }
+    
+    private func callSub(address: Word) {
+        print("call sub \(address)")
+        self.stack[self.sp] = self.pc
+        self.sp += 1
+        self.pc = address
+    }
+    
+    private func storeBinaryCodedDecimal(vx: Int) {
+        print("store binary coded dec \(vx)")
+        
+        let val = self.V[vx]
+        let address = Int(self.I)
+        
+        self.memory[address] = val / 100
+        self.memory[address + 1] = (val / 10) % 10
+        self.memory[address + 2] = (val / 100) % 10
+        
+        self.pc += 2
     }
 
+    private func registerLoad(vx: Int) {
+        print("Loading registers \(vx)")
+        let startAddress = Int(self.I)
+        
+        for i: Int in 0...vx {
+            self.V[i] = self.memory[startAddress + i]
+        }
+        
+        self.pc += 2
+    }
+
+    private func setSpriteAddress(vx: Int) {
+        print("Set sprite address \(vx)")
+        self.I = Word(self.V[vx] * 5)
+        self.pc += 2
+    }
+    
+    private func addToRegister(vx: Int, value: Byte) {
+        print("Adding to register \(vx) \(value)")
+        self.V[vx] = self.V[vx] &+ value
+        self.pc += 2
+    }
+    
+    private func returnFromSub() {
+        print("return from sub")
+        
+        self.sp -= 1
+        self.pc = self.stack[self.sp]
+        
+        self.pc += 2
+    }
+    
+    private func setDelayTimer(vx: Int) {
+        print("Set delay timer")
+        
+        self.delayTimer = self.V[vx]
+        self.pc += 2
+    }
+    
+    private func storeDelayTimer(vx: Int) {
+        print("store delay timer \(vx)")
+    
+        self.V[vx] = self.delayTimer
+        self.pc += 2
+    }
+    
+    private func skipIfEqual(vx: Int, value: Byte) {
+        
+        print("skip if equal \(vx) \(value)")
+        
+        if self.V[vx] == value {
+            self.pc += 2
+        }
+        
+        self.pc += 2
+    }
+    
+    private func jump(address: Word) {
+        
+        print("jump \(address)")
+        
+        self.pc = address
+    }
+    
+    
+    
     func memoryDescription() -> String {
 
         var memoryDescription = ""

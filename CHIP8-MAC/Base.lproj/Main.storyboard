@@ -706,11 +706,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="CHIP8_MAC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="1581" height="723"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1789" height="818"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zaS-K9-2cJ">
-                                <rect key="frame" x="18" y="60" width="1565" height="19"/>
+                                <rect key="frame" x="18" y="60" width="1773" height="19"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Registers" id="Lqs-CU-IJz">
                                     <font key="font" metaFont="systemSemibold" size="16"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -718,13 +718,13 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XE2-vi-foQ" userLabel="Register COl">
-                                <rect key="frame" x="0.0" y="0.0" width="1581" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1789" height="50"/>
                                 <clipView key="contentView" id="aEt-VU-XOA">
-                                    <rect key="frame" x="1" y="1" width="1579" height="48"/>
+                                    <rect key="frame" x="1" y="1" width="1787" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="kHV-rG-8Ff">
-                                            <rect key="frame" x="0.0" y="0.0" width="1579" height="48"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1787" height="48"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="ZCc-FB-Glq">
                                                 <size key="itemSize" width="50" height="50"/>
@@ -745,20 +745,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="I2w-bF-UQy" userLabel="Screen">
-                                <rect key="frame" x="1381" y="90" width="200" height="633"/>
+                            <customView canDrawConcurrently="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2w-bF-UQy" userLabel="Screen" customClass="ScreenView" customModule="CHIP8_MAC" customModuleProvider="target">
+                                <rect key="frame" x="1389" y="418" width="400" height="400"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="L1w-2Z-DsP"/>
+                                    <constraint firstAttribute="height" constant="400" id="BCz-Ec-NUY"/>
+                                    <constraint firstAttribute="width" constant="400" id="L1w-2Z-DsP"/>
                                 </constraints>
                             </customView>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibM-S6-gYf" userLabel="Mem Col">
-                                <rect key="frame" x="0.0" y="89" width="1350" height="634"/>
+                                <rect key="frame" x="0.0" y="89" width="1350" height="729"/>
                                 <clipView key="contentView" id="DM6-Qs-cYo">
-                                    <rect key="frame" x="1" y="1" width="1348" height="632"/>
+                                    <rect key="frame" x="1" y="1" width="1348" height="727"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="wLt-qb-WXb">
-                                            <rect key="frame" x="0.0" y="0.0" width="1348" height="632"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1348" height="727"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="1" minimumLineSpacing="1" id="4ne-0o-e2Y">
                                                 <size key="itemSize" width="40" height="40"/>
@@ -790,18 +791,18 @@
                             <constraint firstAttribute="bottom" secondItem="XE2-vi-foQ" secondAttribute="bottom" id="aMn-XM-tb1"/>
                             <constraint firstAttribute="trailing" secondItem="XE2-vi-foQ" secondAttribute="trailing" id="acT-6e-aEU"/>
                             <constraint firstItem="XE2-vi-foQ" firstAttribute="top" secondItem="zaS-K9-2cJ" secondAttribute="bottom" constant="10" id="gex-3i-57v"/>
-                            <constraint firstItem="I2w-bF-UQy" firstAttribute="bottom" secondItem="wLt-qb-WXb" secondAttribute="bottom" id="kVC-QE-taS"/>
                             <constraint firstItem="zaS-K9-2cJ" firstAttribute="top" secondItem="ibM-S6-gYf" secondAttribute="bottom" constant="10" id="pOq-L5-S1j"/>
                             <constraint firstItem="XE2-vi-foQ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="xQC-aj-DMF"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="memoryCollectionView" destination="wLt-qb-WXb" id="Rrc-Vl-VFl"/>
+                        <outlet property="screenView" destination="I2w-bF-UQy" id="LQG-aL-ztG"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="878.5" y="1176.5"/>
+            <point key="canvasLocation" x="982.5" y="1224"/>
         </scene>
     </scenes>
 </document>

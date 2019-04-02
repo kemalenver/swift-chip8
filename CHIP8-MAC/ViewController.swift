@@ -25,10 +25,11 @@ class ViewController: NSViewController {
             memoryCollectionView.dataSource = self
         }
     }
+    
+    @IBOutlet var screenView: ScreenView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
         let romPath = Bundle.main.path(forResource: "pong", ofType: "ch8")!
         let romURL = URL(fileURLWithPath: romPath)
@@ -38,22 +39,19 @@ class ViewController: NSViewController {
         
         self.chip8 = CHIP8(program: rom)
         
-        self.timer = Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { (timer) in
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
             
-            self.chip8.step()
-            if self.chip8.drawFlag {
-            
+            DispatchQueue.main.async {
+
+                self.chip8.step()
+                if self.chip8.drawFlag {
+                    self.screenView.graphics = self.chip8.graphics
+                    self.screenView.needsDisplay = true
+                    self.chip8.drawFlag = false
+                }
             }
         }
     }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-
-
 }
 
 extension ViewController: NSCollectionViewDelegate, NSCollectionViewDataSource, NSCollectionViewDelegateFlowLayout {
