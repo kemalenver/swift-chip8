@@ -26,18 +26,8 @@ class ScreenView: NSView {
         NSBezierPath.stroke(rect)
         
         NSColor.white.setFill()
-        let rectSize = CGSize(width: 10, height: 10)
+        let rectSize = CGSize(width: blockSize, height: blockSize)
         
-        for i in 0..<graphics.count {
-            
-            let x = i % 64
-            let y = i % 32
-            
-            if self.graphics[i] == 1 {
-                NSRect(origin: CGPoint(x: CGFloat(x) * rectSize.width, y: CGFloat(y) * rectSize.height), size: rectSize).fill()
-            }
-            
-        }
         for x in 0..<64 {
             for y in 0..<32 {
                 if self.graphics[y * 64 + x] == 1 {
