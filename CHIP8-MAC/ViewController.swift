@@ -18,11 +18,11 @@ class ViewController: NSViewController {
     @IBOutlet var memoryCollectionView: NSCollectionView! {
         didSet {
             
-            memoryCollectionView.register(MemoryCVItem.self,forItemWithIdentifier: self.ident)
-            
-            memoryCollectionView.backgroundColors = [NSColor.red, NSColor.blue]
-            memoryCollectionView.delegate = self
-            memoryCollectionView.dataSource = self
+//            memoryCollectionView.register(MemoryCVItem.self,forItemWithIdentifier: self.ident)
+//            
+//            memoryCollectionView.backgroundColors = [NSColor.red, NSColor.blue]
+//            memoryCollectionView.delegate = self
+//            memoryCollectionView.dataSource = self
         }
     }
     

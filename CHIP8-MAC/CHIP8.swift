@@ -128,6 +128,10 @@ class CHIP8 {
         case .jump(let address):
             self.jump(address: address)
         }
+        
+        if delayTimer > 0 {
+            delayTimer -= 1
+        }
     }
     
     private func fetchOpCode() -> OpCode {
