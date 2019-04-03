@@ -10,7 +10,7 @@ import Cocoa
 
 class ScreenView: NSView {
 
-    let blockSize = 5
+    let blockSize = 3
 
     var graphics: [Byte] = [Byte](repeating: 0, count: 64 * 32)
     
@@ -21,20 +21,29 @@ class ScreenView: NSView {
         NSColor.black.setFill()
         self.bounds.fill()
         
+        
+        let rect = CGRect(x: 0, y: 0, width: 64 * blockSize, height: 32 * blockSize)
+        
+        NSColor.red.setFill()
+        NSBezierPath.fill(rect)
+        
         NSColor.white.setStroke()
-        let rect = CGRect(x: 0, y: 0, width: 64*5, height: 32*5)
         NSBezierPath.stroke(rect)
         
         NSColor.white.setFill()
         let rectSize = CGSize(width: blockSize, height: blockSize)
         
-        for x in 0..<64 {
-            for y in 0..<32 {
-                if self.graphics[y * 64 + x] == 1 {
-                    NSRect(origin: CGPoint(x: CGFloat(x) * rectSize.width, y: CGFloat(y) * rectSize.height), size: rectSize).fill()
-                }
+        
+        for i in 0..<self.graphics.count {
+            
+            let x = (i % 64)
+            let y = (i / 64)
+            
+//            print("i: \(i) x: \(x) y: \(y)")
+            
+            if self.graphics[i] == 1 {
+                NSRect(origin: CGPoint(x: CGFloat(x) * rectSize.width, y: CGFloat(y) * rectSize.height), size: rectSize).fill()
             }
         }
     }
-    
 }

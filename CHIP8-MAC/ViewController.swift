@@ -31,7 +31,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let romPath = Bundle.main.path(forResource: "pong", ofType: "ch8")!
+        let romPath = Bundle.main.path(forResource: "test", ofType: "ch8")!
         let romURL = URL(fileURLWithPath: romPath)
         let data: Data = try! Data(contentsOf: romURL)
         
@@ -47,7 +47,6 @@ class ViewController: NSViewController {
                 if self.chip8.drawFlag {
                     self.screenView.graphics = self.chip8.graphics
                     self.screenView.needsDisplay = true
-                    self.chip8.drawFlag = false
                 }
             }
         }

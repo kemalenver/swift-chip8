@@ -24,6 +24,23 @@ enum OpCode {
     case storeDelayTimer(vx: Int)
     case skipIfEqual(vx: Int, value: Byte)
     case jump(address: Word)
+    case random(vx: Int, value: Byte)
+    case skipKeyNotPressed(vx: Int)
+    case and(vx: Int, vy: Int)
+    case assign(vx: Int, vy: Int)
+    case skipIfNotEqual(vx: Int, value: Byte)
+    case addRegisters(vx: Int, vy: Int)
+    case subtractRegisters(vx: Int, vy: Int)
+    case setSoundTimer(vx: Int)
+    case skipRegistersNotEqual(vx: Int, vy: Int)
+    case subtractXfromY(vx: Int, vy: Int)
+    case or(vx: Int, vy: Int)
+    case xor(vx: Int, vy: Int)
+    case shiftLeft(vx: Int, vy: Int)
+    case shiftRight(vx: Int, vy: Int)
+    case writeMemory(vx: Int)
+    case addIndex(vx: Int)
+    case waitKeyPress(vx: Int)
     
     init(rawOpcode: Word) {
         let n1: Byte = Byte((rawOpcode & 0xF000) >> 12)
@@ -73,9 +90,60 @@ enum OpCode {
             
         case (0x1, _, _, _):
             self = .jump(address: rawOpcode & 0xFFF)
+        
+        case let (0xC, vx, _, _):
+            self = .random(vx: Int(vx), value: Byte(rawOpcode & 0xFF))
+            
+        case let (0xE, vx, 0xA, 0x1):
+            self = .skipKeyNotPressed(vx: Int(vx))
+        
+        case let (0x8, vx, vy, 0x2):
+            self = .and(vx: Int(vx), vy: Int(vy))
+            
+        case let (0x8, vx, vy, 0x0):
+            self = .assign(vx: Int(vx), vy: Int(vy))
+            
+        case let (0x4, vx, _, _):
+            self = .skipIfNotEqual(vx: Int(vx), value: Byte(rawOpcode & 0xFF))
+            
+        case let (0x8, vx, vy, 0x4):
+            self = .addRegisters(vx: Int(vx), vy: Int(vy))
+            
+        case let (0x8, vx, vy, 0x5):
+            self = .subtractRegisters(vx: Int(vx), vy: Int(vy))
+            
+        case let (0xF, vx, 0x1, 0x8):
+            self = .setDelayTimer(vx: Int(vx))
+            
+        case let (0x5, vx, vy, 0x0):
+            self = .skipRegistersNotEqual(vx: Int(vx), vy: Int(vy))
+            
+        case let (0x8, vx, vy, 0x7):
+            self = .subtractXfromY(vx: Int(vx), vy: Int(vy))
+            
+        case let (0x8, vx, vy, 0x1):
+            self = .or(vx: Int(vx), vy: Int(vy))
+            
+        case let (0x8, vx, vy, 0x3):
+            self = .xor(vx: Int(vx), vy: Int(vy))
+            
+        case let (0x8, vx, vy, 0xE):
+            self = .shiftLeft(vx: Int(vx), vy: Int(vy))
+            
+        case let (0x8, vx, vy, 0x6):
+            self = .shiftRight(vx: Int(vx), vy: Int(vy))
+            
+        case let (0xF, vx, 0x5, 0x5):
+            self = .writeMemory(vx: Int(vx))
+            
+        case let (0xF, vx, 0x1, 0xE):
+            self = .addIndex(vx: Int(vx))
+            
+        case let (0xF, vx, 0x0, 0xA):
+            self = .waitKeyPress(vx: Int(vx))
 
         default:
-            print(String(format: "Unknown Op: %01X %01X %01X %01X", n1, n2, n3, n4))
+            print(String(format: "\nUnknown Op: %01X:%01X:%01X:%01X", n1, n2, n3, n4))
             fatalError()
         }
     }
